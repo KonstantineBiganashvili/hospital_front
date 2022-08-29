@@ -42,9 +42,9 @@ const Reception = (props) => {
       setErrors(errorsArray);
     } else {
       try {
-        const deletedData = await withoutBody('DELETE', `receptions/${id}`);
-        initialData = deletedData;
-        keepFilteredData(deletedData);
+        const dataAfterDelete = await withoutBody('DELETE', `receptions/${id}`);
+        initialData = dataAfterDelete;
+        keepFilteredData(dataAfterDelete);
       } catch (error) {
         setErrors([error.message]);
       }
