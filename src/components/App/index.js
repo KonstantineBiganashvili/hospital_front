@@ -1,30 +1,27 @@
 import React from 'react';
 
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Navigate,
-} from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import Login from '../Login';
 import Registration from '../Registration';
+import Receptions from '../Receptions';
+import WithAuth from '../HOC/WithAuth';
 
 const App = () => {
-  const token = localStorage.getItem('token');
-
   return (
     <div className="main-body">
       <Router>
         <Routes>
           <Route
-            path="/*"
-            element={token ? <Navigate to="/receptions" /> : <Login />}
+            path="/receptions"
+            element={
+              <WithAuth>
+                <Receptions />
+              </WithAuth>
+            }
           />
-          <Route
-            path="/registration"
-            element={token ? <Navigate to="/receptions" /> : <Registration />}
-          />
+          <Route path="/*" element={<Login />} />
+          <Route path="/registration" element={<Registration />} />
         </Routes>
       </Router>
     </div>
