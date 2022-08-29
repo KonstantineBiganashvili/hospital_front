@@ -6,6 +6,7 @@ import { validName } from '../../../helpers/validators';
 
 const Reception = (props) => {
   const { name, doctor, date, complaints, id, doctorId, data, setData } = props;
+  let { initialData } = props;
 
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
@@ -42,7 +43,7 @@ const Reception = (props) => {
     } else {
       try {
         const deletedData = await withoutBody('DELETE', `receptions/${id}`);
-
+        initialData = deletedData;
         keepFilteredData(deletedData);
       } catch (error) {
         setErrors([error.message]);
@@ -82,6 +83,7 @@ const Reception = (props) => {
           newData
         );
 
+        initialData = editedReceptions;
         setNewData({});
         keepFilteredData(editedReceptions);
         setShowEditModal(false);

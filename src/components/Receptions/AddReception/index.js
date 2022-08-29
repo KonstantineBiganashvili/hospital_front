@@ -7,6 +7,7 @@ import './AddReception.css';
 
 const AddReception = (props) => {
   const { setData } = props;
+
   const [newReception, setNewReception] = useState({});
   const [errors, setErrors] = useState([]);
   const { doctors } = useContext(DoctorsContext);
@@ -58,6 +59,7 @@ const AddReception = (props) => {
           'receptions',
           newReception
         );
+
         setData(newReceptionsInfo);
         setNewReception({});
       } catch (error) {
