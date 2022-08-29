@@ -1,18 +1,20 @@
 import React from 'react';
-import { Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import './Header.css';
 
-const Header = ({ page, token }) => {
+const Header = ({ page, loggedIn }) => {
+  const navigate = useNavigate();
+
   const logOutFunction = () => {
     localStorage.removeItem('token');
-    <Navigate to="/" />;
+    navigate('/');
   };
 
   return (
     <div id="header">
       <img src="./img/Logo.png" alt="logo" id="logoImg" />
       <h2>{page}</h2>
-      {token && (
+      {loggedIn && (
         <button id="logOutBtn" onClick={logOutFunction}>
           Log Out
         </button>
