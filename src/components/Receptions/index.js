@@ -13,7 +13,7 @@ const Receptions = () => {
 
   const [data, setData] = useState([]);
 
-  const getReceptionsFunction = async () => {
+  const getReceptions = async () => {
     try {
       const result = await withoutBody('GET', 'receptions');
       initialData = result;
@@ -29,7 +29,7 @@ const Receptions = () => {
   };
 
   useEffect(() => {
-    getReceptionsFunction();
+    getReceptions();
   }, []);
 
   return (

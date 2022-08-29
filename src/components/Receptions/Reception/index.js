@@ -1,7 +1,6 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import { FaPen, FaTrash } from 'react-icons/fa';
 import { DeleteModal, ErrorModal, EditModal } from '../../Modals';
-import DoctorsContext from '../../../context/DoctorsContext';
 import { withoutBody, withBody } from '../../../services/receptionsAPIService';
 import { validName } from '../../../helpers/validators';
 
@@ -13,16 +12,6 @@ const Reception = (props) => {
   const [newData, setNewData] = useState({});
 
   const [errors, setErrors] = useState([]);
-
-  const { doctors } = useContext(DoctorsContext);
-
-  const shownDoctors = doctors.map((element) => {
-    return (
-      <option key={element.id} value={element.id}>
-        {`${element.doctor_name} (${element.specialization})`}
-      </option>
-    );
-  });
 
   const keepFilteredData = (returnedData) => {
     const returnedIds = {};
@@ -115,7 +104,6 @@ const Reception = (props) => {
         setShowEditModal={setShowEditModal}
         name={name}
         doctor={doctorId}
-        shownDoctors={shownDoctors}
         date={date}
         complaints={complaints}
         newData={newData}

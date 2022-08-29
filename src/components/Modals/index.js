@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
+import DoctorsContext from '../../context/DoctorsContext';
 
 export const ErrorModal = (props) => {
   const { errors, setErrors } = props;
@@ -77,8 +78,17 @@ export const EditModal = (props) => {
     complaints,
     setNewData,
     newData,
-    shownDoctors,
   } = props;
+
+  const { doctors } = useContext(DoctorsContext);
+
+  const doctorsList = doctors.map((element) => {
+    return (
+      <option key={element.id} value={element.id}>
+        {`${element.doctor_name} (${element.specialization})`}
+      </option>
+    );
+  });
 
   return (
     <Modal
@@ -115,7 +125,7 @@ export const EditModal = (props) => {
                 }));
               }}
             >
-              {shownDoctors}
+              {doctorsList}
             </Form.Select>
           </Form.Group>
 
