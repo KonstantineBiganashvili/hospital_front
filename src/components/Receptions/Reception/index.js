@@ -10,15 +10,10 @@ const Reception = (props) => {
 
   const [errors, setErrors] = useState([]);
 
-  const deleteConfirm = () => {
-    setShowDeleteModal(true);
-  };
-
   const deleteReception = async (id) => {
     const errorsArray = [];
 
     if (!id || typeof id !== 'number') {
-      console.log(id);
       errorsArray.push('ID is required and it has to be a number!');
     }
 
@@ -30,22 +25,7 @@ const Reception = (props) => {
       try {
         const deletedData = await withoutBody('DELETE', `receptions/${id}`);
 
-        const returnedIds = {};
-
-        deletedData.map((element) => {
-          return (returnedIds[element.id] = element.id);
-        });
-
-        console.log(returnedIds);
-
-        setData((oldData) => {
-          return oldData.filter((element) => {
-            if (returnedIds.hasOwnProperty(element.id)) {
-              return true;
-            }
-            return false;
-          });
-        });
+        setData(deletedData);
       } catch (error) {
         setErrors([error.message]);
       }
@@ -66,7 +46,7 @@ const Reception = (props) => {
       <td>{complaints}</td>
       <td className="icons">
         <FaPen className="icon" />
-        <FaTrash className="icon" onClick={deleteConfirm} />
+        <FaTrash className="icon" onClick={() => setShowDeleteModal(true)} />
       </td>
     </tr>
   );
