@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import {
   BrowserRouter as Router,
@@ -7,15 +7,20 @@ import {
   Navigate,
 } from 'react-router-dom';
 
-import Registration from './components/Registration';
+import Login from '../Login';
+import Registration from '../Registration';
 
 const App = () => {
-  const [token, setToken] = useState(localStorage.getItem('token') || '');
+  const token = localStorage.getItem('token');
 
   return (
     <div className="main-body">
       <Router>
         <Routes>
+          <Route
+            path="/*"
+            element={token ? <Navigate to="/receptions" /> : <Login />}
+          />
           <Route
             path="/registration"
             element={token ? <Navigate to="/receptions" /> : <Registration />}
