@@ -6,7 +6,7 @@ import Reception from '../Reception';
 import { ErrorModal } from '../../Modals';
 
 const ReceptionList = (props) => {
-  const { data, setData, token } = props;
+  const { data, setData } = props;
 
   const [errors, setErrors] = useState([]);
 
@@ -20,7 +20,6 @@ const ReceptionList = (props) => {
           doctor={`${element.doctor.doctor_name} (${element.doctor.specialization})`}
           date={element.appointment_time}
           complaints={element.complaints}
-          token={token}
           data={data}
           setData={setData}
         />

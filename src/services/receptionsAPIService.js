@@ -18,7 +18,7 @@ export const withoutBody = async (method, linkFragment) => {
 };
 
 export const withBody = async (method, linkFragment, body) => {
-  const token = localStorage.getItem('token') || '';
+  const token = localStorage.getItem('token');
   const finalLink = `${link}/${linkFragment}`;
 
   const result = await Axios({

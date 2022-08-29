@@ -18,10 +18,10 @@ const AddReception = (props) => {
     );
   });
 
-  const setAddReceptionFunction = (e, string) => {
+  const setAddReceptionFunction = (value, string) => {
     setAddReception((oldAddReception) => ({
       ...oldAddReception,
-      [string]: e.target.value,
+      [string]: value,
     }));
   };
 
@@ -73,7 +73,9 @@ const AddReception = (props) => {
             type="text"
             className="inputField"
             id="nameInput"
-            onChange={(e) => setAddReceptionFunction(e, 'patient_name')}
+            onChange={({ target }) =>
+              setAddReceptionFunction(target.value, 'patient_name')
+            }
             value={addReception.patient_name || ''}
           />
         </div>
@@ -83,7 +85,9 @@ const AddReception = (props) => {
           <select
             className="inputField"
             id="doctorInput"
-            onChange={(e) => setAddReceptionFunction(e, 'doctorId')}
+            onChange={({ target }) =>
+              setAddReceptionFunction(target.value, 'doctorId')
+            }
             value={addReception.doctorId}
           >
             <option value="0" hidden>
@@ -98,7 +102,9 @@ const AddReception = (props) => {
             type="date"
             className="inputField"
             id="dateInput"
-            onChange={(e) => setAddReceptionFunction(e, 'appointment_time')}
+            onChange={({ target }) =>
+              setAddReceptionFunction(target.value, 'appointment_time')
+            }
             value={addReception.appointment_time || ''}
           />
         </div>
@@ -108,7 +114,9 @@ const AddReception = (props) => {
             type="text"
             className="inputField"
             id="complaintsInput"
-            onChange={(e) => setAddReceptionFunction(e, 'complaints')}
+            onChange={({ target }) =>
+              setAddReceptionFunction(target.value, 'complaints')
+            }
             value={addReception.complaints || ''}
           />
         </div>
