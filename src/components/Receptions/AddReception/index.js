@@ -11,10 +11,12 @@ const AddReception = (props) => {
   const [errors, setErrors] = useState([]);
   const { doctors } = useContext(DoctorsContext);
 
-  const shownDoctors = doctors.map((element) => {
+  const shownDoctors = doctors.map((element, index) => {
+    const { id, doctor_name, specialization } = element;
+
     return (
-      <option key={element.id} value={element.id}>
-        {`${element.doctor_name} (${element.specialization})`}
+      <option key={`doctor-${index}-${id}`} value={element.id}>
+        {`${doctor_name} (${specialization})`}
       </option>
     );
   });

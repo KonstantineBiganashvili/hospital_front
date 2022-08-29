@@ -11,16 +11,26 @@ const ReceptionList = (props) => {
   const [errors, setErrors] = useState([]);
 
   const renderData = () => {
-    const showData = data.map((element) => {
+    const showData = data.map((element, index) => {
+      const {
+        id,
+        patient_name,
+        doctor,
+        doctorId,
+        appointment_time,
+        complaints,
+      } = element;
+      const { doctor_name, specialization } = doctor;
+
       return (
         <Reception
-          key={element.id}
-          id={element.id}
-          name={element.patient_name}
-          doctor={`${element.doctor.doctor_name} (${element.doctor.specialization})`}
-          doctorId={element.doctorId}
-          date={element.appointment_time}
-          complaints={element.complaints}
+          key={`reception-${index}-${id}`}
+          id={id}
+          name={patient_name}
+          doctor={`${doctor_name} (${specialization})`}
+          doctorId={doctorId}
+          date={appointment_time}
+          complaints={complaints}
           data={data}
           setData={setData}
         />

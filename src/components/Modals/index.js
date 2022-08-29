@@ -7,8 +7,8 @@ export const ErrorModal = (props) => {
 
   const errorsList = () => {
     if (errors.length) {
-      const list = errors.map((element) => {
-        return <li key={errors.indexOf(element)}>{element}</li>;
+      const list = errors.map((element, index) => {
+        return <li key={`error-${index}`}>{element}</li>;
       });
       return list;
     }
@@ -82,10 +82,12 @@ export const EditModal = (props) => {
 
   const { doctors } = useContext(DoctorsContext);
 
-  const doctorsList = doctors.map((element) => {
+  const doctorsList = doctors.map((element, index) => {
+    const { doctor_name, specialization, id } = element;
+
     return (
-      <option key={element.id} value={element.id}>
-        {`${element.doctor_name} (${element.specialization})`}
+      <option key={`doctor-${index}-${id}`} value={id}>
+        {`${doctor_name} (${specialization})`}
       </option>
     );
   });
