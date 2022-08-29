@@ -14,20 +14,18 @@ export const ErrorModal = (props) => {
   };
 
   return (
-    <>
-      <Modal
-        show={errors.length ? true : false}
-        onHide={() => setErrors([])}
-        size="md"
-        aria-labelledby="contained-modal-title-vcenter"
-      >
-        <Modal.Header>
-          <Modal.Title>Error:</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <ul>{errorsList()}</ul>
-        </Modal.Body>
-      </Modal>
-    </>
+    <Modal
+      show={errors.length}
+      onHide={() => setErrors([])}
+      size="md"
+      aria-labelledby="contained-modal-title-vcenter"
+    >
+      <Modal.Header>
+        <Modal.Title>Error:</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        <ul>{errorsList()}</ul>
+      </Modal.Body>
+    </Modal>
   );
 };
