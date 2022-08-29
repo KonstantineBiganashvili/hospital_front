@@ -42,56 +42,49 @@ const Receptions = () => {
     const { sortParam, order } = sort;
 
     const newData = [...data].sort((a, b) => {
-      if (order === 'ascending') {
-        if (a[sortParam] > b[sortParam]) return 1;
-        if (a[sortParam] < b[sortParam]) return -1;
-      }
-
-      if (order === 'descending') {
-        if (a[sortParam] > b[sortParam]) return -1;
-        if (a[sortParam] < b[sortParam]) return 1;
-      }
+      if (a[sortParam] > b[sortParam]) return 1;
+      if (a[sortParam] < b[sortParam]) return -1;
 
       return 0;
     });
 
-    return setData(newData);
+    if (order === 'descending') {
+      setData(newData.reverse());
+    } else {
+      setData(newData);
+    }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sort]);
 
-  const dateFilterFunction = () => {
+  const filterByDate = () => {
     const { from, to } = dateFilter;
 
-    if (!from && !to) {
-      return setErrors([
-        'You must filter according to at least one of the fields!',
-      ]);
+    const errorsArray = [];
+
+    if (!from || !to) {
+      errorsArray.push('You must filter according to both fields!');
     }
 
     if (from && to && to < from) {
-      return setErrors(['Starting date must not be larger than ending date']);
+      errorsArray.push('Starting date must not be larger than ending date');
     }
 
-    const newData = [...initialData].filter((element) => {
-      if (
-        to &&
-        from &&
-        element.appointment_time >= from &&
-        element.appointment_time <= to
-      ) {
-        return true;
-      }
-      if (from && !to && element.appointment_time >= from) {
-        return true;
-      }
-      if (to && !from && element.appointment_time <= to) {
-        return true;
-      }
+    if (errorsArray.length) {
+      setErrors(errorsArray);
+    } else {
+      const newData = [...initialData].filter((element) => {
+        const answer =
+          to &&
+          from &&
+          element.appointment_time >= from &&
+          element.appointment_time <= to;
 
-      return false;
-    });
+        return answer;
+      });
 
-    return setData(newData);
+      setData(newData);
+    }
   };
 
   return (
@@ -104,7 +97,7 @@ const Receptions = () => {
           setSort={setSort}
           dateFilter={dateFilter}
           setDateFilter={setDateFilter}
-          dateFilterFunction={dateFilterFunction}
+          filterByDate={filterByDate}
           initialData={initialData}
           setData={setData}
         />

@@ -3,19 +3,14 @@ import './ReceptionFilter.css';
 import { FaPlusSquare, FaTrash } from 'react-icons/fa';
 
 const ReceptionFilter = (props) => {
-  const {
-    sort,
-    setSort,
-    setDateFilter,
-    dateFilterFunction,
-    initialData,
-    setData,
-  } = props;
+  const { sort, setSort, setDateFilter, filterByDate, initialData, setData } =
+    props;
   const [showDateFilter, setShowDateFilter] = useState(false);
 
-  const clearFunction = () => {
+  const clearSortAndFilter = () => {
     setShowDateFilter(false);
     setDateFilter({});
+    setSort({});
     setData(initialData);
   };
 
@@ -46,13 +41,13 @@ const ReceptionFilter = (props) => {
                 }
               />
             </div>
-            <button
-              id="dateFilterConfirmBtn"
-              onClick={() => dateFilterFunction()}
-            >
+            <button id="dateFilterConfirmBtn" onClick={() => filterByDate()}>
               Filter
             </button>
-            <button id="clearDateFilterBtn" onClick={() => clearFunction()}>
+            <button
+              id="clearDateFilterBtn"
+              onClick={() => clearSortAndFilter()}
+            >
               <FaTrash />
             </button>
           </>
@@ -66,8 +61,8 @@ const ReceptionFilter = (props) => {
       <div id="sort">
         <select
           className="inputField"
-          onChange={(e) =>
-            setSort((oldSort) => ({ ...oldSort, sortParam: e.target.value }))
+          onChange={({ target }) =>
+            setSort((oldSort) => ({ ...oldSort, sortParam: target.value }))
           }
         >
           <option value="" hidden>
@@ -81,8 +76,8 @@ const ReceptionFilter = (props) => {
           <select
             className="inputField sortOrder"
             defaultValue="ascending"
-            onChange={(e) =>
-              setSort((oldSort) => ({ ...oldSort, order: e.target.value }))
+            onChange={({ target }) =>
+              setSort((oldSort) => ({ ...oldSort, order: target.value }))
             }
           >
             <option value="ascending">Ascending</option>
