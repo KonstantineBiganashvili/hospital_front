@@ -11,7 +11,7 @@ import Login from '../Login';
 import Registration from '../Registration';
 
 const App = () => {
-  const token = localStorage.getItem('token') || '';
+  const token = localStorage.getItem('token');
 
   return (
     <div className="main-body">
