@@ -17,3 +17,30 @@ code {
   margin: 0;
   padding: 0;
 }
+
+.main-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2vw;
+  padding-bottom: 5vw;
+  min-height: 100vh;
+  width: 100%;
+  background: #c5e9ff;
+}
+
+.body {
+  display: flex;
+  justify-content: center;
+  margin-top: 7vw;
+  gap: 15vw;
+  height: 100%;
+  text-align: center;
+}
+
+#hospitalImg {
+  width: 32vw;
+}
+
+h2 {
+  margin-bottom: 0 !important;
+}

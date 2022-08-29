@@ -1,0 +1,40 @@
+#header {
+  width: 100%;
+  height: 5vw;
+  display: flex;
+  gap: 5vw;
+  justify-content: flex-start;
+  padding-left: 10vw;
+  align-items: center;
+  box-shadow: 0 0.2vw 0.1vw 0.1vw rgba(0, 0, 0, 0.25);
+}
+
+#header h2 {
+  font-style: normal;
+  font-weight: 300;
+  font-size: 2vw;
+
+  background-color: #c5e9ff;
+}
+
+#logoImg {
+  width: 5vw;
+}
+
+#logOutBtn {
+  font-size: 1vw;
+  width: 8vw;
+  height: 2vw;
+  letter-spacing: 0.05vw;
+  background: #ffffff;
+  border: 0.1vw solid rgba(0, 0, 0, 0.2);
+  border-radius: 0.1vw;
+  margin-left: 40vw;
+}
+
+#logOutBtn:hover {
+  color: #fff;
+  transform: scale(0.95);
+  background: #423b3b;
+  cursor: pointer;
+}
