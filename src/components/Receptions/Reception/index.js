@@ -43,8 +43,10 @@ const Reception = (props) => {
     } else {
       try {
         const dataAfterDelete = await withoutBody('DELETE', `receptions/${id}`);
-        initialData = dataAfterDelete;
-        keepFilteredData(dataAfterDelete);
+        if (dataAfterDelete) {
+          initialData = dataAfterDelete;
+          keepFilteredData(dataAfterDelete);
+        }
       } catch (error) {
         setErrors([error.message]);
       }
