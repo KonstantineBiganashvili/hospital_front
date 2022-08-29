@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { withBody } from '../../services/receptionsAPIService';
 import Header from '../Header';
 import { ErrorModal } from '../../Modals/Modals';
 import { validEmail } from '../../helpers/validators';
 import './Login.css';
 
-const Login = (props) => {
+const Login = () => {
   const [loginInfo, setLoginInfo] = useState({});
   const [errors, setErrors] = useState([]);
-  const { setToken } = props;
+  const navigate = useNavigate();
 
   const logInInfoFunction = (info) => {
     setLoginInfo({ ...loginInfo, ...info });
@@ -36,7 +36,7 @@ const Login = (props) => {
     if (!errorsArray.length) {
       try {
         const newLoginInfo = await withBody('POST', 'login', loginInfo);
-        setToken(newLoginInfo.token);
+        if (newLoginInfo) navigate('/receptions');
       } catch (error) {
         setErrors((oldErrors) => [...oldErrors, error.message]);
       }

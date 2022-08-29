@@ -11,7 +11,7 @@ import Login from './components/Login';
 import Registration from './components/Registration';
 
 const App = () => {
-  const [token, setToken] = useState(localStorage.getItem('token') || '');
+  const token = localStorage.getItem('token') || '';
 
   return (
     <div className="main-body">
@@ -19,13 +19,7 @@ const App = () => {
         <Routes>
           <Route
             path="/*"
-            element={
-              token ? (
-                <Navigate to="/receptions" />
-              ) : (
-                <Login setToken={setToken} />
-              )
-            }
+            element={token ? <Navigate to="/receptions" /> : <Login />}
           />
           <Route
             path="/registration"

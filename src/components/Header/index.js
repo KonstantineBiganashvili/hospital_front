@@ -1,10 +1,11 @@
 import React from 'react';
+import { Navigate } from 'react-router-dom';
 import './Header.css';
 
-const Header = ({ page, token, setToken }) => {
+const Header = ({ page, token }) => {
   const logOutFunction = () => {
     localStorage.removeItem('token');
-    setToken('');
+    <Navigate to="/" />;
   };
 
   return (
