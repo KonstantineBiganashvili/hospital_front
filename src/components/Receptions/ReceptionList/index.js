@@ -7,6 +7,7 @@ import { ErrorModal } from '../../Modals';
 
 const ReceptionList = (props) => {
   const { data, setData } = props;
+  let { initialData } = props;
 
   const [errors, setErrors] = useState([]);
 
@@ -33,6 +34,7 @@ const ReceptionList = (props) => {
           complaints={complaints}
           data={data}
           setData={setData}
+          initialData={initialData}
         />
       );
     });
