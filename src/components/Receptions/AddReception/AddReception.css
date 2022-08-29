@@ -1,0 +1,50 @@
+#receptions {
+  width: 100%;
+  box-shadow: 0 0.2vw 0.1vw 0.1vw rgba(0, 0, 0, 0.25);
+}
+
+#addPatient {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2vw;
+  padding: 1vw;
+}
+
+.addFields {
+  display: flex;
+  flex-direction: column;
+  gap: 1vw;
+}
+
+.addFields label {
+  background-color: #c5e9ff;
+}
+
+.inputField {
+  border: none;
+  background-color: #fff;
+  padding: 0.5vw;
+  width: 13vw;
+  height: 2.5vw;
+  font-size: 0.8vw;
+  border: 0.1vw solid rgba(0, 0, 0, 0.2);
+  border-radius: 0.1vw;
+}
+
+#addBtn {
+  align-self: flex-end;
+  border: none;
+  background-color: #fff;
+  font-size: 1vw;
+  width: 6vw;
+  height: 2vw;
+  cursor: pointer;
+}
+
+#addBtn:hover {
+  color: #fff;
+  transform: scale(0.95);
+  background: #423b3b;
+  cursor: pointer;
+}
