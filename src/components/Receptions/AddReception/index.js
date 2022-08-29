@@ -18,10 +18,10 @@ const AddReception = (props) => {
     );
   });
 
-  const setAddReceptionFunction = (value, string) => {
+  const setAddReceptionFunction = (newReceptionValues) => {
     setAddReception((oldAddReception) => ({
       ...oldAddReception,
-      [string]: value,
+      ...newReceptionValues,
     }));
   };
 
@@ -74,7 +74,7 @@ const AddReception = (props) => {
             className="inputField"
             id="nameInput"
             onChange={({ target }) =>
-              setAddReceptionFunction(target.value, 'patient_name')
+              setAddReceptionFunction({ patient_name: target.value })
             }
             value={addReception.patient_name || ''}
           />
@@ -86,7 +86,7 @@ const AddReception = (props) => {
             className="inputField"
             id="doctorInput"
             onChange={({ target }) =>
-              setAddReceptionFunction(target.value, 'doctorId')
+              setAddReceptionFunction({ doctorId: target.value })
             }
             value={addReception.doctorId}
           >
@@ -103,7 +103,7 @@ const AddReception = (props) => {
             className="inputField"
             id="dateInput"
             onChange={({ target }) =>
-              setAddReceptionFunction(target.value, 'appointment_time')
+              setAddReceptionFunction({ appointment_time: target.value })
             }
             value={addReception.appointment_time || ''}
           />
@@ -115,7 +115,7 @@ const AddReception = (props) => {
             className="inputField"
             id="complaintsInput"
             onChange={({ target }) =>
-              setAddReceptionFunction(target.value, 'complaints')
+              setAddReceptionFunction({ complaints: target.value })
             }
             value={addReception.complaints || ''}
           />
