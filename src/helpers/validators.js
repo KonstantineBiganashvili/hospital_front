@@ -11,3 +11,9 @@ export const validPassword = (password) => {
 
   return validatePassword.test(password);
 };
+
+export const validName = (name) => {
+  const validateName = /^[A-Za-z ]{2,}$/;
+
+  return validateName.test(name);
+};

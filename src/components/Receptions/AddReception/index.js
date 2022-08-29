@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react';
 import { withBody } from '../../../services/receptionsAPIService';
 import DoctorsContext from '../../../context/DoctorsContext';
 import { ErrorModal } from '../../Modals';
+import { validName } from '../../../helpers/validators';
 import './AddReception.css';
 
 const AddReception = (props) => {
@@ -10,10 +11,12 @@ const AddReception = (props) => {
   const [errors, setErrors] = useState([]);
   const { doctors } = useContext(DoctorsContext);
 
-  const shownDoctors = doctors.map((element) => {
+  const shownDoctors = doctors.map((element, index) => {
+    const { id, doctor_name, specialization } = element;
+
     return (
-      <option key={element.id} value={element.id}>
-        {`${element.doctor_name} (${element.specialization})`}
+      <option key={`doctor-${index}-${id}`} value={element.id}>
+        {`${doctor_name} (${specialization})`}
       </option>
     );
   });
@@ -28,8 +31,8 @@ const AddReception = (props) => {
   const addReception = async () => {
     const errorsArray = [];
 
-    if (!newReception.patient_name) {
-      errorsArray.push('Patient name is required!');
+    if (!newReception.patient_name || !validName(newReception.patient_name)) {
+      errorsArray.push('Patient name must be at least 2 characters long');
     }
 
     if (!newReception.doctorId || newReception.doctorId === '0') {
