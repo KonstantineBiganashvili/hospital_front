@@ -8,13 +8,13 @@ export const DoctorsProvider = ({ children }) => {
 
   const token = localStorage.getItem('token') || '';
 
-  const doctorsFunction = async () => {
+  const getDoctors = async () => {
     const newDoctors = await withoutBody('GET', 'doctors');
     setDoctors(newDoctors);
   };
 
   useEffect(() => {
-    doctorsFunction();
+    getDoctors();
   }, [token]);
 
   return (

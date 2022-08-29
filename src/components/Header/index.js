@@ -5,7 +5,7 @@ import './Header.css';
 const Header = ({ page, loggedIn }) => {
   const navigate = useNavigate();
 
-  const logOutFunction = () => {
+  const logOut = () => {
     localStorage.removeItem('token');
     navigate('/');
   };
@@ -15,7 +15,7 @@ const Header = ({ page, loggedIn }) => {
       <img src="./img/Logo.png" alt="logo" id="logoImg" />
       <h2>{page}</h2>
       {loggedIn && (
-        <button id="logOutBtn" onClick={logOutFunction}>
+        <button id="logOutBtn" onClick={logOut}>
           Log Out
         </button>
       )}

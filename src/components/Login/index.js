@@ -11,11 +11,11 @@ const Login = () => {
   const [errors, setErrors] = useState([]);
   const navigate = useNavigate();
 
-  const logInInfoFunction = (info) => {
+  const createLoginInfo = (info) => {
     setLoginInfo({ ...loginInfo, ...info });
   };
 
-  const logInFunction = async () => {
+  const logIn = async () => {
     const errorsArray = [];
 
     if (
@@ -56,8 +56,8 @@ const Login = () => {
             <input
               type="email"
               id="emailInput"
-              onInput={(e) =>
-                logInInfoFunction({ login: e.target.value.toLowerCase() })
+              onInput={({ target }) =>
+                createLoginInfo({ login: target.value.toLowerCase() })
               }
             />
           </div>
@@ -66,10 +66,12 @@ const Login = () => {
             <input
               type="password"
               id="passwordInput"
-              onInput={(e) => logInInfoFunction({ password: e.target.value })}
+              onInput={({ target }) =>
+                createLoginInfo({ password: target.value })
+              }
             />
           </div>
-          <button type="submit" id="submitBtn" onClick={() => logInFunction()}>
+          <button type="submit" id="submitBtn" onClick={() => logIn()}>
             LOG IN
           </button>
           <Link to="/registration" id="registerLink">
