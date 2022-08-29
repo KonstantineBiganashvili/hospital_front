@@ -7,8 +7,8 @@ import {
   Navigate,
 } from 'react-router-dom';
 
-import Login from './components/Login';
-import Registration from './components/Registration';
+import Login from '../Login';
+import Registration from '../Registration';
 
 const App = () => {
   const token = localStorage.getItem('token') || '';

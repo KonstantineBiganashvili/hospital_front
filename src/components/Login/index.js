@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { withBody } from '../../services/receptionsAPIService';
 import Header from '../Header';
-import { ErrorModal } from '../../Modals/Modals';
+import { ErrorModal } from '../Modals';
 import { validEmail } from '../../helpers/validators';
 import './Login.css';
 

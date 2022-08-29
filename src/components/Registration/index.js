@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { withBody } from '../../services/receptionsAPIService';
 import Header from '../Header';
-import { ErrorModal } from '../../Modals/Modals';
+import { ErrorModal } from '../Modals';
 import { validEmail, validPassword } from '../../helpers/validators';
 import './Registration.css';
 
@@ -67,9 +67,9 @@ const Registration = () => {
             <input
               type="email"
               id="emailInput"
-              onInput={(e) =>
+              onInput={({ target }) =>
                 registrationInfoFunction({
-                  login: e.target.value.toLowerCase(),
+                  login: target.value.toLowerCase(),
                 })
               }
             />
@@ -79,8 +79,8 @@ const Registration = () => {
             <input
               type="password"
               id="passwordInput"
-              onInput={(e) =>
-                registrationInfoFunction({ password: e.target.value })
+              onInput={({ target }) =>
+                registrationInfoFunction({ password: target.value })
               }
             />
           </div>
@@ -89,8 +89,8 @@ const Registration = () => {
             <input
               type="password"
               id="passwordRepeatInput"
-              onInput={(e) =>
-                registrationInfoFunction({ repeatedPassword: e.target.value })
+              onInput={({ target }) =>
+                registrationInfoFunction({ repeatedPassword: target.value })
               }
             />
           </div>
