@@ -6,7 +6,7 @@ import './AddReception.css';
 
 const AddReception = (props) => {
   const { setData } = props;
-  const [addReception, setAddReception] = useState({});
+  const [newReception, setNewReception] = useState({});
   const [errors, setErrors] = useState([]);
   const { doctors } = useContext(DoctorsContext);
 
@@ -18,29 +18,29 @@ const AddReception = (props) => {
     );
   });
 
-  const setAddReceptionFunction = (newReceptionValues) => {
-    setAddReception((oldAddReception) => ({
-      ...oldAddReception,
+  const createNewReception = (newReceptionValues) => {
+    setNewReception((oldNewReception) => ({
+      ...oldNewReception,
       ...newReceptionValues,
     }));
   };
 
-  const addReceptionFunction = async () => {
+  const addReception = async () => {
     const errorsArray = [];
 
-    if (!addReception.patient_name) {
+    if (!newReception.patient_name) {
       errorsArray.push('Patient name is required!');
     }
 
-    if (!addReception.doctorId || addReception.doctorId === '0') {
+    if (!newReception.doctorId || newReception.doctorId === '0') {
       errorsArray.push('You must assign a doctor to the patient');
     }
 
-    if (!addReception.appointment_time) {
+    if (!newReception.appointment_time) {
       errorsArray.push('You must assign date to the appointment!');
     }
 
-    if (!addReception.complaints) {
+    if (!newReception.complaints) {
       errorsArray.push('Complaints field is required!');
     }
 
@@ -53,10 +53,10 @@ const AddReception = (props) => {
         const newReceptionsInfo = await withBody(
           'POST',
           'receptions',
-          addReception
+          newReception
         );
         setData(newReceptionsInfo);
-        setAddReception({});
+        setNewReception({});
       } catch (error) {
         setErrors((oldErrors) => [...oldErrors, error.message]);
       }
@@ -74,9 +74,9 @@ const AddReception = (props) => {
             className="inputField"
             id="nameInput"
             onChange={({ target }) =>
-              setAddReceptionFunction({ patient_name: target.value })
+              createNewReception({ patient_name: target.value })
             }
-            value={addReception.patient_name}
+            value={newReception.patient_name}
           />
         </div>
         <div className="addFields">
@@ -86,9 +86,9 @@ const AddReception = (props) => {
             className="inputField"
             id="doctorInput"
             onChange={({ target }) =>
-              setAddReceptionFunction({ doctorId: target.value })
+              createNewReception({ doctorId: target.value })
             }
-            value={addReception.doctorId}
+            value={newReception.doctorId}
           >
             <option value="0" hidden>
               Doctors
@@ -103,9 +103,9 @@ const AddReception = (props) => {
             className="inputField"
             id="dateInput"
             onChange={({ target }) =>
-              setAddReceptionFunction({ appointment_time: target.value })
+              createNewReception({ appointment_time: target.value })
             }
-            value={addReception.appointment_time}
+            value={newReception.appointment_time}
           />
         </div>
         <div className="addFields">
@@ -115,12 +115,12 @@ const AddReception = (props) => {
             className="inputField"
             id="complaintsInput"
             onChange={({ target }) =>
-              setAddReceptionFunction({ complaints: target.value })
+              createNewReception({ complaints: target.value })
             }
-            value={addReception.complaints}
+            value={newReception.complaints}
           />
         </div>
-        <button type="submit" id="addBtn" onClick={addReceptionFunction}>
+        <button type="submit" id="addBtn" onClick={addReception}>
           Add
         </button>
       </div>

@@ -11,11 +11,11 @@ const Registration = () => {
   const [errors, setErrors] = useState([]);
   const navigate = useNavigate();
 
-  const registrationInfoFunction = (info) => {
+  const createRegistrationInfo = (info) => {
     setRegistrationInfo({ ...registrationInfo, ...info });
   };
 
-  const registrationFunction = async () => {
+  const registration = async () => {
     const errorsArray = [];
 
     if (
@@ -68,7 +68,7 @@ const Registration = () => {
               type="email"
               id="emailInput"
               onInput={({ target }) =>
-                registrationInfoFunction({
+                createRegistrationInfo({
                   login: target.value.toLowerCase(),
                 })
               }
@@ -80,7 +80,7 @@ const Registration = () => {
               type="password"
               id="passwordInput"
               onInput={({ target }) =>
-                registrationInfoFunction({ password: target.value })
+                createRegistrationInfo({ password: target.value })
               }
             />
           </div>
@@ -90,11 +90,11 @@ const Registration = () => {
               type="password"
               id="passwordRepeatInput"
               onInput={({ target }) =>
-                registrationInfoFunction({ repeatedPassword: target.value })
+                createRegistrationInfo({ repeatedPassword: target.value })
               }
             />
           </div>
-          <button id="submitBtn" onClick={registrationFunction}>
+          <button id="submitBtn" onClick={registration}>
             REGISTER
           </button>
           <Link to="/" id="registerLink">
