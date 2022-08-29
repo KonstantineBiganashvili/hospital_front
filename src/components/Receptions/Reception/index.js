@@ -19,9 +19,7 @@ const Reception = (props) => {
 
     if (errorsArray.length) {
       setErrors(errorsArray);
-    }
-
-    if (!errorsArray.length) {
+    } else {
       try {
         const deletedData = await withoutBody('DELETE', `receptions/${id}`);
 
