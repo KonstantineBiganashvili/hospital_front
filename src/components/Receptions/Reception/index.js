@@ -14,21 +14,15 @@ const Reception = (props) => {
 
   const [errors, setErrors] = useState([]);
 
-  const keepFilteredData = (returnedData) => {
-    const returnedIds = {};
-
-    data.map((element) => {
-      return (returnedIds[element.id] = element.id);
+  const keepFilteredData = (returnedReceptions) => {
+    setData((oldReceptions) => {
+      return returnedReceptions.filter((newReceptions) => {
+        const exists = oldReceptions.findIndex(
+          (reception) => newReceptions.id === reception.id
+        );
+        return exists > -1;
+      });
     });
-
-    setData(
-      returnedData.filter((element) => {
-        if (returnedIds[element.id]) {
-          return true;
-        }
-        return false;
-      })
-    );
   };
 
   const deleteReception = async (id) => {
