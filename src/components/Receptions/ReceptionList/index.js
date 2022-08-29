@@ -18,6 +18,7 @@ const ReceptionList = (props) => {
           id={element.id}
           name={element.patient_name}
           doctor={`${element.doctor.doctor_name} (${element.doctor.specialization})`}
+          doctorId={element.doctorId}
           date={element.appointment_time}
           complaints={element.complaints}
           data={data}
