@@ -1,0 +1,72 @@
+#LoginInputFields {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5vw;
+  height: 32vw;
+  width: 32vw;
+  background-color: #fff;
+  padding: 3vw;
+}
+
+#submitBtn {
+  font-size: 1vw;
+  width: 8vw;
+  height: 2vw;
+  letter-spacing: 0.05vw;
+  background: #ffffff;
+  border: 0.1vw solid rgba(0, 0, 0, 0.2);
+  border-radius: 0.1vw;
+  align-self: flex-end;
+}
+
+#submitBtn:hover {
+  color: #fff;
+  transform: scale(0.95);
+  background: #423b3b;
+  cursor: pointer;
+}
+
+#emailInputField,
+#passwordInputField,
+#passwordInputRepeatField {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7vw;
+  background-color: #fff;
+}
+
+#emailInput,
+#passwordInput,
+#passwordRepeatInput {
+  padding: 0.7vw;
+  height: 2.5vw;
+  border: 0.1vw solid rgba(0, 0, 0, 0.2);
+  border-radius: 0.1vw;
+  background-color: #fff;
+}
+
+h2,
+label,
+#registerLink {
+  font-style: normal;
+  font-weight: 300;
+  background-color: #fff;
+}
+
+h2 {
+  font-size: 1.5vw;
+}
+
+label {
+  font-size: 1.2vw;
+  line-height: 1vw;
+  align-self: flex-start;
+}
+
+#registerLink:link,
+#registerLink:visited {
+  align-self: flex-end;
+  font-size: 1.2vw;
+  text-decoration: none;
+  color: #000;
+}
