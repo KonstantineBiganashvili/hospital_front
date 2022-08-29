@@ -11,12 +11,10 @@ const Header = ({ page, token, setToken }) => {
     <div id="header">
       <img src="./img/Logo.png" alt="logo" id="logoImg" />
       <h2>{page}</h2>
-      {token ? (
+      {token && (
         <button id="logOutBtn" onClick={logOutFunction}>
           Log Out
         </button>
-      ) : (
-        <> </>
       )}
     </div>
   );

@@ -19,9 +19,9 @@ const Registration = () => {
     const errorsArray = [];
 
     if (
-      !registrationInfo.hasOwnProperty('login') ||
-      !registrationInfo.hasOwnProperty('password') ||
-      !registrationInfo.hasOwnProperty('repeatedPassword')
+      !registrationInfo.login ||
+      !registrationInfo.password ||
+      !registrationInfo.repeatedPassword
     ) {
       errorsArray.push('You have to enter all fields!');
     }
