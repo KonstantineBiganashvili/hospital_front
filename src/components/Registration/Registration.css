@@ -1,0 +1,9 @@
+#RegistrationInputFields {
+  display: flex;
+  flex-direction: column;
+  gap: 1.6vw;
+  height: 32vw;
+  width: 32vw;
+  background-color: #fff;
+  padding: 3vw;
+}
