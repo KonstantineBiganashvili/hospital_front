@@ -76,7 +76,7 @@ const AddReception = (props) => {
             onChange={({ target }) =>
               setAddReceptionFunction({ patient_name: target.value })
             }
-            value={addReception.patient_name || ''}
+            value={addReception.patient_name}
           />
         </div>
         <div className="addFields">
@@ -105,7 +105,7 @@ const AddReception = (props) => {
             onChange={({ target }) =>
               setAddReceptionFunction({ appointment_time: target.value })
             }
-            value={addReception.appointment_time || ''}
+            value={addReception.appointment_time}
           />
         </div>
         <div className="addFields">
@@ -117,7 +117,7 @@ const AddReception = (props) => {
             onChange={({ target }) =>
               setAddReceptionFunction({ complaints: target.value })
             }
-            value={addReception.complaints || ''}
+            value={addReception.complaints}
           />
         </div>
         <button type="submit" id="addBtn" onClick={addReceptionFunction}>
