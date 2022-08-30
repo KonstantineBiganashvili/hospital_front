@@ -27,6 +27,8 @@ export const EditModal = (props) => {
     );
   });
 
+  const { patient_name, doctorId, appointment_time, newComplaints } = newData;
+
   return (
     <Modal
       show={showEditModal}
@@ -41,7 +43,7 @@ export const EditModal = (props) => {
             <Form.Control
               type="text"
               placeholder="Enter Name"
-              value={newData.patient_name || name}
+              value={patient_name || name}
               onInput={({ target }) => {
                 setNewData((oldData) => ({
                   ...oldData,
@@ -54,7 +56,7 @@ export const EditModal = (props) => {
           <Form.Group className="mb-3">
             <Form.Label>Doctor</Form.Label>
             <Form.Select
-              value={newData.doctorId || doctor}
+              value={doctorId || doctor}
               onInput={({ target }) => {
                 setNewData((oldData) => ({
                   ...oldData,
@@ -70,7 +72,7 @@ export const EditModal = (props) => {
             <Form.Label>Date</Form.Label>
             <Form.Control
               type="date"
-              value={newData.appointment_time || date}
+              value={appointment_time || date}
               onInput={({ target }) => {
                 setNewData((oldData) => ({
                   ...oldData,
@@ -85,7 +87,7 @@ export const EditModal = (props) => {
             <Form.Control
               type="text"
               placeholder="Enter Complaints"
-              value={newData.complaints || complaints}
+              value={newComplaints || complaints}
               onInput={({ target }) => {
                 setNewData((oldData) => ({
                   ...oldData,

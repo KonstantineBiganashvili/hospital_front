@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './ReceptionFilter.css';
+import './receptionFilter.css';
 import { FaPlusSquare, FaTrash } from 'react-icons/fa';
 
 const ReceptionFilter = (props) => {
@@ -24,7 +24,7 @@ const ReceptionFilter = (props) => {
   return (
     <div id="filter">
       <div id="dateFilter">
-        {showDateFilter ? (
+        {showDateFilter && (
           <>
             <div id="dateFilterInputs">
               <input
@@ -55,12 +55,12 @@ const ReceptionFilter = (props) => {
               <FaTrash />
             </button>
           </>
-        ) : null}
-        {!showDateFilter ? (
+        )}
+        {!showDateFilter && (
           <button id="dateFilterBtn" onClick={() => setShowDateFilter(true)}>
             <FaPlusSquare />
           </button>
-        ) : null}
+        )}
       </div>
       <div id="sort">
         <select
@@ -76,7 +76,7 @@ const ReceptionFilter = (props) => {
           <option value="appointment_time">Date</option>
           <option value="doctorId">Doctor</option>
         </select>
-        {sort.sortParam ? (
+        {sort.sortParam && (
           <select
             className="inputField sortOrder"
             defaultValue="ascending"
@@ -85,7 +85,7 @@ const ReceptionFilter = (props) => {
             <option value="ascending">Ascending</option>
             <option value="descending">Descending</option>
           </select>
-        ) : null}
+        )}
       </div>
     </div>
   );
