@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { withBody } from '../../../services/receptionsAPIService';
-import DoctorsContext from '../../../context/DoctorsContext';
+import DoctorsContext from '../../HOC/DoctorsContext';
 import { ErrorModal } from '../../Modals/ErrorModal';
 import { validName } from '../../../helpers/validators';
 import './addReception.css';
@@ -28,10 +28,10 @@ const AddReception = (props) => {
   });
 
   const createNewReception = (newReceptionValues) => {
-    setNewReception((oldNewReception) => ({
-      ...oldNewReception,
+    setNewReception({
+      ...newReception,
       ...newReceptionValues,
-    }));
+    });
   };
 
   const { patient_name, doctorId, appointment_time, complaints } = newReception;
@@ -43,7 +43,7 @@ const AddReception = (props) => {
       errorsArray.push('Patient name must be at least 2 characters long');
     }
 
-    if (!doctorId || doctorId === '0') {
+    if (!doctorId) {
       errorsArray.push('You must assign a doctor to the patient');
     }
 
@@ -73,7 +73,7 @@ const AddReception = (props) => {
           complaints: '',
         });
       } catch (error) {
-        setErrors((oldErrors) => [...oldErrors, error.message]);
+        setErrors([error.message]);
       }
     }
   };

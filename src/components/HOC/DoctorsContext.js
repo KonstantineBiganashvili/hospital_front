@@ -1,5 +1,5 @@
 import React, { createContext, useState, useEffect } from 'react';
-import { withoutBody } from '../services/receptionsAPIService';
+import { withoutBody } from '../../services/receptionsAPIService';
 
 const DoctorsContext = createContext();
 
