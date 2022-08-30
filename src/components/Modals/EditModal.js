@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
-import DoctorsContext from '../../context/DoctorsContext';
+import DoctorsContext from '../HOC/DoctorsContext';
 
 export const EditModal = (props) => {
   const {

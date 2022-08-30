@@ -49,7 +49,7 @@ const Registration = () => {
         const registered = await withBody('POST', 'register', registrationInfo);
         if (registered) navigate('/login');
       } catch (error) {
-        setErrors((oldErrors) => [...oldErrors, error.message]);
+        setErrors([error.message]);
       }
     }
   };

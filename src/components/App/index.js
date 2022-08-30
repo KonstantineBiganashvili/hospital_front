@@ -20,7 +20,7 @@ const App = () => {
               </WithAuth>
             }
           />
-          <Route path="/*" element={<Login />} />
+          <Route path="/" element={<Login />} />
           <Route path="/registration" element={<Registration />} />
         </Routes>
       </Router>

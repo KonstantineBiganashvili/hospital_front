@@ -5,7 +5,7 @@ import Header from '../Header';
 import ReceptionList from '../Receptions/ReceptionList';
 import AddReception from './AddReception';
 import ReceptionFilter from '../ReceptionFilter';
-import { DoctorsProvider } from '../../context/DoctorsContext';
+import { DoctorsProvider } from '../HOC/DoctorsContext';
 import { ErrorModal } from '../Modals/ErrorModal';
 
 let initialData;
