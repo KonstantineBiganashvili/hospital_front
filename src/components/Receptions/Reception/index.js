@@ -7,7 +7,8 @@ import { withoutBody, withBody } from '../../../services/receptionsAPIService';
 import { validName } from '../../../helpers/validators';
 
 const Reception = (props) => {
-  const { name, doctor, date, complaints, id, doctorId, data, setData } = props;
+  const { name, date, complaints, id, doctor, doctorName, data, setData } =
+    props;
   let { initialData } = props;
 
   const [showDeleteModal, setShowDeleteModal] = useState(false);
@@ -48,29 +49,26 @@ const Reception = (props) => {
     }
   };
 
+  const { patient_name, doctorId, appointment_time, newComplaints } = newData;
+
   const editReception = async (id) => {
     const errorsArray = [];
 
-    if (
-      !newData.patient_name &&
-      !newData.doctorId &&
-      !newData.appointment_time &&
-      !newData.complaints
-    ) {
+    if (!patient_name && !doctorId && !appointment_time && !complaints) {
       errorsArray.push('You must change at least one field!');
     } else {
-      if (newData.patient_name && !validName(newData.patient_name))
+      if (patient_name && !validName(patient_name))
         errorsArray.push(
           'Edited name must not be empty and must be at least 2 characters long'
         );
 
-      if (newData.doctorId && !(newData.doctorId > 0))
+      if (doctorId && !(doctorId > 0))
         errorsArray.push('Edited doctor must not be empty!');
 
-      if (newData.appointment_time && !newData.appointment_time.trim())
+      if (appointment_time && !appointment_time.trim())
         errorsArray.push('Edited appointment_time must not be empty!');
 
-      if (newData.complaints && !newData.complaints.trim())
+      if (newComplaints && !newComplaints.trim())
         errorsArray.push('Edited complaints must not be empty!');
     }
 
@@ -111,7 +109,7 @@ const Reception = (props) => {
         showEditModal={showEditModal}
         setShowEditModal={setShowEditModal}
         name={name}
-        doctor={doctorId}
+        doctor={doctor}
         date={date}
         complaints={complaints}
         newData={newData}
@@ -119,7 +117,7 @@ const Reception = (props) => {
         editReception={() => editReception(id)}
       />
       <td>{name}</td>
-      <td>{doctor}</td>
+      <td>{doctorName}</td>
       <td>{date}</td>
       <td>{complaints}</td>
       <td className="icons">

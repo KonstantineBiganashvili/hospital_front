@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import React, { useState } from 'react';
-import './ReceptionList.css';
+import './receptionList.css';
 import Reception from '../Reception';
 
 import { ErrorModal } from '../../Modals/ErrorModal';
@@ -28,8 +28,8 @@ const ReceptionList = (props) => {
           key={`reception-${index}-${id}`}
           id={id}
           name={patient_name}
-          doctor={`${doctor_name} (${specialization})`}
-          doctorId={doctorId}
+          doctorName={`${doctor_name} (${specialization})`}
+          doctor={doctorId}
           date={appointment_time}
           complaints={complaints}
           data={data}

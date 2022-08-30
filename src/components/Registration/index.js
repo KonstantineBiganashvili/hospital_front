@@ -4,7 +4,7 @@ import { withBody } from '../../services/receptionsAPIService';
 import Header from '../Header';
 import { ErrorModal } from '../Modals/ErrorModal';
 import { validEmail, validPassword } from '../../helpers/validators';
-import './Registration.css';
+import './registration.css';
 
 const Registration = () => {
   const [registrationInfo, setRegistrationInfo] = useState({
@@ -19,25 +19,23 @@ const Registration = () => {
     setRegistrationInfo({ ...registrationInfo, ...info });
   };
 
+  const { login, password, repeatedPassword } = registrationInfo;
+
   const registration = async () => {
     const errorsArray = [];
 
-    if (
-      !registrationInfo.login ||
-      !registrationInfo.password ||
-      !registrationInfo.repeatedPassword
-    ) {
+    if (!login || !password || !repeatedPassword) {
       errorsArray.push('You have to enter all fields!');
     } else {
-      if (!validEmail(registrationInfo.login)) {
+      if (!validEmail(login)) {
         errorsArray.push('Invalid email address!');
       }
 
-      if (registrationInfo.password !== registrationInfo.repeatedPassword) {
+      if (password !== repeatedPassword) {
         errorsArray.push('Passwords do not match!');
       }
 
-      if (!validPassword(registrationInfo.password)) {
+      if (!validPassword(password)) {
         errorsArray.push(
           'Password must be at least 8 characters long and must include at least one special symbol and uppercase letter!'
         );
@@ -48,8 +46,8 @@ const Registration = () => {
       setErrors(errorsArray);
     } else {
       try {
-        await withBody('POST', 'register', registrationInfo);
-        navigate('/login');
+        const registered = await withBody('POST', 'register', registrationInfo);
+        if (registered) navigate('/login');
       } catch (error) {
         setErrors((oldErrors) => [...oldErrors, error.message]);
       }
@@ -69,6 +67,7 @@ const Registration = () => {
             <input
               type="email"
               id="emailInput"
+              value={login}
               onInput={({ target }) =>
                 createRegistrationInfo({
                   login: target.value.toLowerCase(),
@@ -81,6 +80,7 @@ const Registration = () => {
             <input
               type="password"
               id="passwordInput"
+              value={password}
               onInput={({ target }) =>
                 createRegistrationInfo({ password: target.value })
               }
@@ -91,6 +91,7 @@ const Registration = () => {
             <input
               type="password"
               id="passwordRepeatInput"
+              value={repeatedPassword}
               onInput={({ target }) =>
                 createRegistrationInfo({ repeatedPassword: target.value })
               }

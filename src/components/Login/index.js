@@ -4,7 +4,7 @@ import { withBody } from '../../services/receptionsAPIService';
 import Header from '../Header';
 import { ErrorModal } from '../Modals/ErrorModal';
 
-import './Login.css';
+import './login.css';
 
 const Login = () => {
   const [loginInfo, setLoginInfo] = useState({ login: '', password: '' });
@@ -29,6 +29,8 @@ const Login = () => {
     }
   };
 
+  const { login, password } = loginInfo;
+
   return (
     <>
       <ErrorModal errors={errors} setErrors={setErrors} />
@@ -42,7 +44,7 @@ const Login = () => {
             <input
               type="email"
               id="emailInput"
-              value={loginInfo.login}
+              value={login}
               onInput={({ target }) =>
                 createLoginInfo({ login: target.value.toLowerCase() })
               }
@@ -53,7 +55,7 @@ const Login = () => {
             <input
               type="password"
               id="passwordInput"
-              value={loginInfo.password}
+              value={password}
               onInput={({ target }) =>
                 createLoginInfo({ password: target.value })
               }
