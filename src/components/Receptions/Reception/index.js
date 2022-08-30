@@ -12,7 +12,12 @@ const Reception = (props) => {
 
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
-  const [newData, setNewData] = useState({});
+  const [newData, setNewData] = useState({
+    patient_name: '',
+    appointment_time: '',
+    doctorId: '',
+    complaints: '',
+  });
 
   const [errors, setErrors] = useState([]);
 
@@ -46,7 +51,12 @@ const Reception = (props) => {
   const editReception = async (id) => {
     const errorsArray = [];
 
-    if (!Object.keys(newData).length) {
+    if (
+      !newData.patient_name &&
+      !newData.doctorId &&
+      !newData.appointment_time &&
+      !newData.complaints
+    ) {
       errorsArray.push('You must change at least one field!');
     } else {
       if (newData.patient_name && !validName(newData.patient_name))
@@ -75,11 +85,16 @@ const Reception = (props) => {
         );
 
         initialData = editedReceptions;
-        setNewData({});
+        setNewData({
+          patient_name: '',
+          appointment_time: '',
+          doctorId: '',
+          complaints: '',
+        });
         keepFilteredData(editedReceptions);
         setShowEditModal(false);
       } catch (error) {
-        setErrors([error.message]);
+        setErrors([error.response.data]);
       }
     }
   };

@@ -14,7 +14,7 @@ const Receptions = () => {
   const navigate = useNavigate();
 
   const [data, setData] = useState([]);
-  const [sort, setSort] = useState({ order: 'ascending' });
+  const [sort, setSort] = useState({ sortValue: '', order: 'ascending' });
   const [dateFilter, setDateFilter] = useState({ from: '', to: '' });
   const [errors, setErrors] = useState([]);
 

@@ -8,7 +8,12 @@ import './AddReception.css';
 const AddReception = (props) => {
   const { setData } = props;
 
-  const [newReception, setNewReception] = useState({});
+  const [newReception, setNewReception] = useState({
+    patient_name: '',
+    doctorId: '',
+    appointment_time: '',
+    complaints: '',
+  });
   const [errors, setErrors] = useState([]);
   const { doctors } = useContext(DoctorsContext);
 
@@ -59,7 +64,12 @@ const AddReception = (props) => {
         );
 
         setData(newReceptionsInfo);
-        setNewReception({});
+        setNewReception({
+          patient_name: '',
+          doctorId: '',
+          appointment_time: '',
+          complaints: '',
+        });
       } catch (error) {
         setErrors((oldErrors) => [...oldErrors, error.message]);
       }
@@ -79,7 +89,7 @@ const AddReception = (props) => {
             onChange={({ target }) =>
               createNewReception({ patient_name: target.value })
             }
-            value={newReception.patient_name || ''}
+            value={newReception.patient_name}
           />
         </div>
         <div className="addFields">
@@ -91,7 +101,7 @@ const AddReception = (props) => {
             onChange={({ target }) =>
               createNewReception({ doctorId: target.value })
             }
-            value={newReception.doctorId || ''}
+            value={newReception.doctorId}
           >
             <option value="0" hidden>
               Doctors
@@ -108,7 +118,7 @@ const AddReception = (props) => {
             onChange={({ target }) =>
               createNewReception({ appointment_time: target.value })
             }
-            value={newReception.appointment_time || ''}
+            value={newReception.appointment_time}
           />
         </div>
         <div className="addFields">
@@ -120,7 +130,7 @@ const AddReception = (props) => {
             onChange={({ target }) =>
               createNewReception({ complaints: target.value })
             }
-            value={newReception.complaints || ''}
+            value={newReception.complaints}
           />
         </div>
         <button type="submit" id="addBtn" onClick={addReception}>

@@ -7,7 +7,11 @@ import { validEmail, validPassword } from '../../helpers/validators';
 import './Registration.css';
 
 const Registration = () => {
-  const [registrationInfo, setRegistrationInfo] = useState({});
+  const [registrationInfo, setRegistrationInfo] = useState({
+    login: '',
+    password: '',
+    repeatedPassword: '',
+  });
   const [errors, setErrors] = useState([]);
   const navigate = useNavigate();
 
@@ -24,20 +28,20 @@ const Registration = () => {
       !registrationInfo.repeatedPassword
     ) {
       errorsArray.push('You have to enter all fields!');
-    }
+    } else {
+      if (!validEmail(registrationInfo.login)) {
+        errorsArray.push('Invalid email address!');
+      }
 
-    if (!validEmail(registrationInfo.login)) {
-      errorsArray.push('Invalid email address!');
-    }
+      if (registrationInfo.password !== registrationInfo.repeatedPassword) {
+        errorsArray.push('Passwords do not match!');
+      }
 
-    if (registrationInfo.password !== registrationInfo.repeatedPassword) {
-      errorsArray.push('Passwords do not match!');
-    }
-
-    if (!validPassword(registrationInfo.password)) {
-      errorsArray.push(
-        'Password must be at least 8 characters long and must include at least one special symbol and uppercase letter!'
-      );
+      if (!validPassword(registrationInfo.password)) {
+        errorsArray.push(
+          'Password must be at least 8 characters long and must include at least one special symbol and uppercase letter!'
+        );
+      }
     }
 
     if (errorsArray.length) {

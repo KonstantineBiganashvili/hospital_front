@@ -7,7 +7,7 @@ import { ErrorModal } from '../Modals/ErrorModal';
 import './Login.css';
 
 const Login = () => {
-  const [loginInfo, setLoginInfo] = useState({});
+  const [loginInfo, setLoginInfo] = useState({ login: '', password: '' });
   const [errors, setErrors] = useState([]);
   const navigate = useNavigate();
 
@@ -42,6 +42,7 @@ const Login = () => {
             <input
               type="email"
               id="emailInput"
+              value={loginInfo.login}
               onInput={({ target }) =>
                 createLoginInfo({ login: target.value.toLowerCase() })
               }
@@ -52,6 +53,7 @@ const Login = () => {
             <input
               type="password"
               id="passwordInput"
+              value={loginInfo.password}
               onInput={({ target }) =>
                 createLoginInfo({ password: target.value })
               }
