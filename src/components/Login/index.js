@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { withBody } from '../../services/receptionsAPIService';
 import Header from '../Header';
 import { ErrorModal } from '../Modals';
-import { validEmail } from '../../helpers/validators';
+
 import './Login.css';
 
 const Login = () => {
@@ -16,29 +16,15 @@ const Login = () => {
   };
 
   const logIn = async () => {
-    const errorsArray = [];
-
-    if (
-      !loginInfo.hasOwnProperty('login') ||
-      !loginInfo.hasOwnProperty('password')
-    ) {
-      errorsArray.push('You have to enter all fields');
-    }
-
-    if (!validEmail(loginInfo.login)) {
-      errorsArray.push('Invalid email address!');
-    }
-
-    if (errorsArray.length) {
-      setErrors(errorsArray);
-    }
-
-    if (!errorsArray.length) {
+    if (!loginInfo.login || !loginInfo.password) {
+      setErrors(['You have to enter all fields']);
+    } else {
       try {
         const newLoginInfo = await withBody('POST', 'login', loginInfo);
+
         if (newLoginInfo) navigate('/receptions');
       } catch (error) {
-        setErrors((oldErrors) => [...oldErrors, error.message]);
+        setErrors([error.response.data.message]);
       }
     }
   };
