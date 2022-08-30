@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import './receptionFilter.css';
 import { FaPlusSquare, FaTrash } from 'react-icons/fa';
+import './receptionFilter.css';
 
 const ReceptionFilter = (props) => {
   const {

@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import React, { useState } from 'react';
-import './receptionList.css';
 import Reception from '../Reception';
+import './receptionList.css';
 
 import { ErrorModal } from '../../Modals/ErrorModal';
 
