@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { withBody } from '../../../services/receptionsAPIService';
 import DoctorsContext from '../../../context/DoctorsContext';
-import { ErrorModal } from '../../Modals';
+import { ErrorModal } from '../../Modals/ErrorModal';
 import { validName } from '../../../helpers/validators';
 import './AddReception.css';
 
@@ -32,7 +32,7 @@ const AddReception = (props) => {
   const addReception = async () => {
     const errorsArray = [];
 
-    if (!newReception.patient_name || !validName(newReception.patient_name)) {
+    if (!validName(newReception.patient_name)) {
       errorsArray.push('Patient name must be at least 2 characters long');
     }
 
@@ -50,9 +50,7 @@ const AddReception = (props) => {
 
     if (errorsArray.length) {
       setErrors(errorsArray);
-    }
-
-    if (!errorsArray.length) {
+    } else {
       try {
         const newReceptionsInfo = await withBody(
           'POST',
@@ -81,7 +79,7 @@ const AddReception = (props) => {
             onChange={({ target }) =>
               createNewReception({ patient_name: target.value })
             }
-            value={newReception.patient_name}
+            value={newReception.patient_name || ''}
           />
         </div>
         <div className="addFields">
@@ -93,7 +91,7 @@ const AddReception = (props) => {
             onChange={({ target }) =>
               createNewReception({ doctorId: target.value })
             }
-            value={newReception.doctorId}
+            value={newReception.doctorId || ''}
           >
             <option value="0" hidden>
               Doctors
@@ -110,7 +108,7 @@ const AddReception = (props) => {
             onChange={({ target }) =>
               createNewReception({ appointment_time: target.value })
             }
-            value={newReception.appointment_time}
+            value={newReception.appointment_time || ''}
           />
         </div>
         <div className="addFields">
@@ -122,7 +120,7 @@ const AddReception = (props) => {
             onChange={({ target }) =>
               createNewReception({ complaints: target.value })
             }
-            value={newReception.complaints}
+            value={newReception.complaints || ''}
           />
         </div>
         <button type="submit" id="addBtn" onClick={addReception}>

@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { FaPen, FaTrash } from 'react-icons/fa';
-import { DeleteModal, ErrorModal, EditModal } from '../../Modals';
+import { DeleteModal } from '../../Modals/DeleteModal';
+import { ErrorModal } from '../../Modals/ErrorModal';
+import { EditModal } from '../../Modals/EditModal';
 import { withoutBody, withBody } from '../../../services/receptionsAPIService';
 import { validName } from '../../../helpers/validators';
 
@@ -26,14 +28,8 @@ const Reception = (props) => {
   };
 
   const deleteReception = async (id) => {
-    const errorsArray = [];
-
     if (!id || typeof id !== 'number') {
-      errorsArray.push('ID is required and it has to be a number!');
-    }
-
-    if (errorsArray.length) {
-      setErrors(errorsArray);
+      setErrors(['ID is required and it has to be a number!']);
     } else {
       try {
         const dataAfterDelete = await withoutBody('DELETE', `receptions/${id}`);
@@ -50,10 +46,9 @@ const Reception = (props) => {
   const editReception = async (id) => {
     const errorsArray = [];
 
-    if (!Object.keys(newData).length)
+    if (!Object.keys(newData).length) {
       errorsArray.push('You must change at least one field!');
-
-    if (Object.keys(newData).length) {
+    } else {
       if (newData.patient_name && !validName(newData.patient_name))
         errorsArray.push(
           'Edited name must not be empty and must be at least 2 characters long'
@@ -69,9 +64,9 @@ const Reception = (props) => {
         errorsArray.push('Edited complaints must not be empty!');
     }
 
-    if (errorsArray.length) return setErrors(errorsArray);
-
-    if (!errorsArray.length) {
+    if (errorsArray.length) {
+      setErrors(errorsArray);
+    } else {
       try {
         const editedReceptions = await withBody(
           'PATCH',

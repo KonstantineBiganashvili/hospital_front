@@ -23,31 +23,28 @@ const ReceptionFilter = (props) => {
               <input
                 type="date"
                 className="inputField"
-                onChange={(e) =>
+                onChange={({ target }) =>
                   setDateFilter((oldDateFilter) => ({
                     ...oldDateFilter,
-                    from: e.target.value,
+                    from: target.value,
                   }))
                 }
               />
               <input
                 type="date"
                 className="inputField"
-                onChange={(e) =>
+                onChange={({ target }) =>
                   setDateFilter((oldDateFilter) => ({
                     ...oldDateFilter,
-                    to: e.target.value,
+                    to: target.value,
                   }))
                 }
               />
             </div>
-            <button id="dateFilterConfirmBtn" onClick={() => filterByDate()}>
+            <button id="dateFilterConfirmBtn" onClick={filterByDate}>
               Filter
             </button>
-            <button
-              id="clearDateFilterBtn"
-              onClick={() => clearSortAndFilter()}
-            >
+            <button id="clearDateFilterBtn" onClick={clearSortAndFilter}>
               <FaTrash />
             </button>
           </>

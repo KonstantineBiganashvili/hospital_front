@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import './ReceptionList.css';
 import Reception from '../Reception';
 
-import { ErrorModal } from '../../Modals';
+import { ErrorModal } from '../../Modals/ErrorModal';
 
 const ReceptionList = (props) => {
   const { data, setData } = props;
