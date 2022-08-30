@@ -29,7 +29,7 @@ const Receptions = () => {
       if (status === 401) {
         navigate('/');
         localStorage.removeItem('token');
-      } else console.error(error);
+      } else setErrors([error.message]);
     }
   };
 
@@ -75,10 +75,7 @@ const Receptions = () => {
     } else {
       const newData = [...initialData].filter((element) => {
         const answer =
-          to &&
-          from &&
-          element.appointment_time >= from &&
-          element.appointment_time <= to;
+          element.appointment_time >= from && element.appointment_time <= to;
 
         return answer;
       });
