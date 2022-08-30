@@ -3,8 +3,15 @@ import './ReceptionFilter.css';
 import { FaPlusSquare, FaTrash } from 'react-icons/fa';
 
 const ReceptionFilter = (props) => {
-  const { sort, setSort, setDateFilter, filterByDate, initialData, setData } =
-    props;
+  const {
+    sort,
+    setSort,
+    dateFilter,
+    setDateFilter,
+    filterByDate,
+    initialData,
+    setData,
+  } = props;
   const [showDateFilter, setShowDateFilter] = useState(false);
 
   const clearSortAndFilter = () => {
@@ -23,31 +30,28 @@ const ReceptionFilter = (props) => {
               <input
                 type="date"
                 className="inputField"
-                onChange={(e) =>
-                  setDateFilter((oldDateFilter) => ({
-                    ...oldDateFilter,
-                    from: e.target.value,
-                  }))
+                onChange={({ target }) =>
+                  setDateFilter({
+                    ...dateFilter,
+                    from: target.value,
+                  })
                 }
               />
               <input
                 type="date"
                 className="inputField"
-                onChange={(e) =>
-                  setDateFilter((oldDateFilter) => ({
-                    ...oldDateFilter,
-                    to: e.target.value,
-                  }))
+                onChange={({ target }) =>
+                  setDateFilter({
+                    ...dateFilter,
+                    to: target.value,
+                  })
                 }
               />
             </div>
-            <button id="dateFilterConfirmBtn" onClick={() => filterByDate()}>
+            <button id="dateFilterConfirmBtn" onClick={filterByDate}>
               Filter
             </button>
-            <button
-              id="clearDateFilterBtn"
-              onClick={() => clearSortAndFilter()}
-            >
+            <button id="clearDateFilterBtn" onClick={clearSortAndFilter}>
               <FaTrash />
             </button>
           </>
@@ -62,7 +66,7 @@ const ReceptionFilter = (props) => {
         <select
           className="inputField"
           onChange={({ target }) =>
-            setSort((oldSort) => ({ ...oldSort, sortParam: target.value }))
+            setSort({ ...sort, sortParam: target.value })
           }
         >
           <option value="" hidden>
@@ -76,9 +80,7 @@ const ReceptionFilter = (props) => {
           <select
             className="inputField sortOrder"
             defaultValue="ascending"
-            onChange={({ target }) =>
-              setSort((oldSort) => ({ ...oldSort, order: target.value }))
-            }
+            onChange={({ target }) => setSort({ ...sort, order: target.value })}
           >
             <option value="ascending">Ascending</option>
             <option value="descending">Descending</option>

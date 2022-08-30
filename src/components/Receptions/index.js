@@ -6,7 +6,7 @@ import ReceptionList from '../Receptions/ReceptionList';
 import AddReception from './AddReception';
 import ReceptionFilter from '../ReceptionFilter';
 import { DoctorsProvider } from '../../context/DoctorsContext';
-import { ErrorModal } from '../Modals';
+import { ErrorModal } from '../Modals/ErrorModal';
 
 let initialData;
 
@@ -14,8 +14,8 @@ const Receptions = () => {
   const navigate = useNavigate();
 
   const [data, setData] = useState([]);
-  const [sort, setSort] = useState({ order: 'ascending' });
-  const [dateFilter, setDateFilter] = useState({});
+  const [sort, setSort] = useState({ sortValue: '', order: 'ascending' });
+  const [dateFilter, setDateFilter] = useState({ from: '', to: '' });
   const [errors, setErrors] = useState([]);
 
   const getReceptions = async () => {
@@ -49,10 +49,10 @@ const Receptions = () => {
     });
 
     if (order === 'descending') {
-      setData(newData.reverse());
-    } else {
-      setData(newData);
+      newData.reverse();
     }
+
+    setData(newData);
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sort]);
@@ -66,7 +66,7 @@ const Receptions = () => {
       errorsArray.push('You must filter according to both fields!');
     }
 
-    if (from && to && to < from) {
+    if (to < from) {
       errorsArray.push('Starting date must not be larger than ending date');
     }
 

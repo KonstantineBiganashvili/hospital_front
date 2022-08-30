@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { withBody } from '../../services/receptionsAPIService';
 import Header from '../Header';
-import { ErrorModal } from '../Modals';
+import { ErrorModal } from '../Modals/ErrorModal';
 
 import './Login.css';
 
 const Login = () => {
-  const [loginInfo, setLoginInfo] = useState({});
+  const [loginInfo, setLoginInfo] = useState({ login: '', password: '' });
   const [errors, setErrors] = useState([]);
   const navigate = useNavigate();
 
@@ -42,6 +42,7 @@ const Login = () => {
             <input
               type="email"
               id="emailInput"
+              value={loginInfo.login}
               onInput={({ target }) =>
                 createLoginInfo({ login: target.value.toLowerCase() })
               }
@@ -52,12 +53,13 @@ const Login = () => {
             <input
               type="password"
               id="passwordInput"
+              value={loginInfo.password}
               onInput={({ target }) =>
                 createLoginInfo({ password: target.value })
               }
             />
           </div>
-          <button type="submit" id="submitBtn" onClick={() => logIn()}>
+          <button id="submitBtn" onClick={logIn}>
             LOG IN
           </button>
           <Link to="/registration" id="registerLink">

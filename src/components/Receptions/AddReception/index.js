@@ -1,14 +1,19 @@
 import React, { useState, useContext } from 'react';
 import { withBody } from '../../../services/receptionsAPIService';
 import DoctorsContext from '../../../context/DoctorsContext';
-import { ErrorModal } from '../../Modals';
+import { ErrorModal } from '../../Modals/ErrorModal';
 import { validName } from '../../../helpers/validators';
 import './AddReception.css';
 
 const AddReception = (props) => {
   const { setData } = props;
 
-  const [newReception, setNewReception] = useState({});
+  const [newReception, setNewReception] = useState({
+    patient_name: '',
+    doctorId: '',
+    appointment_time: '',
+    complaints: '',
+  });
   const [errors, setErrors] = useState([]);
   const { doctors } = useContext(DoctorsContext);
 
@@ -32,7 +37,7 @@ const AddReception = (props) => {
   const addReception = async () => {
     const errorsArray = [];
 
-    if (!newReception.patient_name || !validName(newReception.patient_name)) {
+    if (!validName(newReception.patient_name)) {
       errorsArray.push('Patient name must be at least 2 characters long');
     }
 
@@ -50,9 +55,7 @@ const AddReception = (props) => {
 
     if (errorsArray.length) {
       setErrors(errorsArray);
-    }
-
-    if (!errorsArray.length) {
+    } else {
       try {
         const newReceptionsInfo = await withBody(
           'POST',
@@ -61,7 +64,12 @@ const AddReception = (props) => {
         );
 
         setData(newReceptionsInfo);
-        setNewReception({});
+        setNewReception({
+          patient_name: '',
+          doctorId: '',
+          appointment_time: '',
+          complaints: '',
+        });
       } catch (error) {
         setErrors((oldErrors) => [...oldErrors, error.message]);
       }
